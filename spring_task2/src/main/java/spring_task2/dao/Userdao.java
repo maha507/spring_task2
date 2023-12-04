@@ -26,6 +26,31 @@ public class Userdao {
 		return user;
 		
 	}
+	
+	public User updateUser(User user) {
+		EntityTransaction entityTransaction=entityManager.getTransaction();
+		entityTransaction.begin();
+		entityManager.merge(user);
+		entityTransaction.commit();
+		return user;
+		
+	}
+	public boolean deleteUser(int id) {
+		EntityTransaction entityTransaction=entityManager.getTransaction();
+	    User user=	entityManager.find(User.class, id);
+	    if(user!=null) {
+	    	entityTransaction.begin();
+	    	entityManager.remove(user);
+	    	entityTransaction.commit();
+	    	return true;
+	    }else {
+			return false;
+		}	
+		
+	}
+	public User geteUserbyid(int id) {
+		return entityManager.find(User.class, id);
+	}
 	public  List<User> getallUsers(){
 		Query query	=entityManager.createQuery("select u from User u");
 		return query.getResultList();

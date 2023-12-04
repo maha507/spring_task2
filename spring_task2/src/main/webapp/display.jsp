@@ -14,6 +14,8 @@
 <th>Name</th>
 <th>Mobile</th>
 <th>Mail</th>
+<th>Edit</th>
+<th>Delete</th>
 </tr>
 <c:forEach var="user" items="${list}">
     <tr>
@@ -21,6 +23,11 @@
         <td>${user.name}</td>
         <td>${user.mobile}</td>
         <td>${user.mail}</td>
+        
+        
+		<td><a href="edit?id=${user.id}">edit</a>
+		
+		<td><a href="delete?id=${user.id}">delete</a>
     </tr>
 </c:forEach>
 
